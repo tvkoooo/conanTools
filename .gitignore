@@ -1,0 +1,7 @@
+/lib/*
+/build_windows/*
+/build_qnx/*
+/build_windows0/*
+/build_qnx0/*
+/tar_qnx/*
+/mylog/*

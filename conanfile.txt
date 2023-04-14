@@ -1,0 +1,11 @@
+[requires]
+eframework/2.3.13.9@libs/stable
+gsl/2.1.0@libs/stable
+abseil-cpp/20200225.2@libs/stable
+fmt/7.0.3@libs/stable
+httpserver/1.3.3@libs/stable
+protobuf/3.19.4@libs/stable
+
+[generators]
+cmake
+

@@ -1,0 +1,30 @@
+set(PROJECT_SPRINT "r9")
+set(PROJECT_VERSION_FILE ${PROJECT_SOURCE_DIR}/build_info.ver)
+# message("ver file = " ${PROJECT_VERSION_FILE})
+
+function(generate_build_info)
+    file(REMOVE ${PROJECT_VERSION_FILE})
+    file(TOUCH ${PROJECT_VERSION_FILE})
+    file(APPEND ${PROJECT_VERSION_FILE} "project = " ${PROJECT_NAME}\n)
+#    file(APPEND ${PROJECT_VERSION_FILE} "tier 1 = " ${TIER1_NAME}\n)
+    string(TIMESTAMP COMPILE_TIME %Y%m%d_%H%M%S)
+    set(BUILD_TIME ${COMPILE_TIME})
+    file(APPEND ${PROJECT_VERSION_FILE} "build_time = " ${BUILD_TIME}\n)
+    file(APPEND ${PROJECT_VERSION_FILE} "sprint = " ${PROJECT_SPRINT}\n)
+endfunction()
+
+
+function(attach_build_info version_info)
+    set(INDEX 0)  
+      
+    while(INDEX LESS ${ARGC})  
+        # message("ARG = "${ARGV${INDEX}})
+        file(APPEND ${PROJECT_VERSION_FILE} ${ARGV${INDEX}})
+        math(EXPR INDEX "${INDEX} + 1")
+    endwhile()
+    file(APPEND ${PROJECT_VERSION_FILE} \n)
+endfunction()
+
+function(install_build_info)
+    install(FILES ${PROJECT_VERSION_FILE} DESTINATION ${PROJECT_BINARY_DIR}/output)
+endfunction()
